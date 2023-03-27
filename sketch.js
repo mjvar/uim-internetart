@@ -7,13 +7,15 @@ let sizeChangeSpeed = 2;
 let minRadius = 0.02;
 let maxRadius = 0.2;
 
+let startingCircles = 20;
+
 let entriesCeiling = 20;
 
 let fontLight;
 let fontMedItal;
 
 let balls = [];
-let ballColors = ['#E5D1FA','#E3DFFD','#ECF2FF'];
+let ballColors = ["#9C6BE8","#7F6FF2","#7080DC","#6FA5F2","#6BBFE8"];
 
 let demoWords = [];
 const gratefulFor = ["health", "family", "friends", "love", "opportunities", "learning", "nature", "laughter", "kindness", "comfort", "peace", "strength", "home", "food", "water", "job", "income", "freedom", "creativity", "inspiration", "education", "technology", "hope", "memories", "adventure", "growth", "beauty", "goodness", "spirituality", "generosity", "simplicity", "community", "gratitude", "compassion", "humor", "curiosity", "flexibility", "resilience", "empathy", "trust", "faith", "patience", "forgiveness", "positivity", "creativity", "self-care", "music", "books", "sunshine", "moonlight", "stars"];
@@ -39,7 +41,7 @@ function setup() {
   minRadius *= windowWidth;
   maxRadius *= windowWidth;
 
-  for (i = 0; i < 15; i++) {
+  for (i = 0; i < startingCircles; i++) {
     balls.push(new Ball(
       createVector(width/2,0),
       p5.Vector.random2D().mult(random(0.1)),
@@ -55,7 +57,7 @@ function setup() {
 }
 
 function draw() {
-  background(255, 250, 235, 50);
+  background(242, 247, 255, 90);
   
   for(let i = 0; i < balls.length; i++) {
     for(let j = 0; j < i; j++) {
@@ -165,7 +167,7 @@ class Ball {
       this.drawRadius += Math.sign(radiusDiff)*sizeChangeSpeed;
     }
 
-    let opacity = (this.mouseOver) ? 255 : 200;
+    let opacity = (this.mouseOver) ? 255 : 100;
     this.color.setAlpha(opacity);
     fill(this.color);
     noStroke();
@@ -182,9 +184,9 @@ class Ball {
     text(this.word, this.pos.x, this.pos.y-(this.drawRadius*0.1));
 
     if (this.mouseOver) {
-      textSize(this.drawRadius*0.3);
+      textSize(this.drawRadius*0.2);
       fill(10,10,10);
-      let plural = (this.entries == 1) ? " entry" : " entries";
+      let plural = (this.entries == 1) ? " fellow human" : " fellow humans";
       let entryCountStr = str(this.entries) + plural;
       text(entryCountStr, this.pos.x, this.pos.y+(this.drawRadius*0.3))
     }
