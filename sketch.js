@@ -25,12 +25,14 @@ const animalFeeling = ["lion", "gazelle", "monkey", "turtle", "dolphin", "panda"
 const recentChallenges = ["time", "patience", "focus", "motivation", "communication", "consistency", "confidence", "perfectionism", "anxiety", "fear", "procrastination", "self-doubt", "balance", "prioritization", "organization", "responsibility", "change", "adaptation", "rejection", "criticism", "self-discipline", "negativity", "self-care", "money", "health", "energy", "workload", "decision-making", "technology", "complexity", "creativity", "insecurity", "jealousy", "forgiveness", "letting go", "boundaries", "acceptance", "trust", "self-improvement", "relationships", "family", "loneliness", "grief", "trauma", "uncertainty", "stress", "sleep", "environment", "productivity"];
 const fears = ["heights", "spiders", "failure", "death", "rejection", "speaking", "darkness", "conflict", "snakes", "claustrophobia", "water", "needles", "flying", "dogs", "socializing", "abandonment", "helplessness", "disease", "crowds", "loneliness", "future", "unknown", "germs", "supernatural", "success", "vulnerability", "change", "commitment", "ocean", "fire", "insects", "betrayal", "ghosts", "violence", "dentist", "disappointment", "aging", "judgement", "restrooms", "misunderstanding", "mirrors", "wrongness", "failure", "cheating", "lovelessness", "loss", "poverty", "war", "failure"];
 const loveObjects = ["heart", "flower", "candle", "ring", "hug", "kiss", "book", "pillow", "painting", "letter", "mirror", "jigsaw", "puzzle", "lock", "key", "photo", "album", "bridge", "tree", "umbrella", "gift", "map", "compass", "sculpture", "statue", "treasure", "box", "chocolate", "teapot", "cushion", "bottle", "bracelet", "jewelry", "drawer", "calendar", "ticket", "photograph", "bookmark", "blanket", "scarf", "journal", "cup", "telephone", "bag", "notebook", "soap", "cloud", "star", "moon"];
+const weighingDown = ["stress", "doubt", "fear", "anxiety", "pressure", "expectations", "regret", "guilt", "shame", "insecurity", "trauma", "heartbreak", "disappointment", "uncertainty", "pain", "grief", "sadness", "fatigue", "overwhelm", "responsibility", "obligation", "burden", "depression", "loneliness", "isolation", "confusion", "resentment", "anger", "frustration", "negativity", "toxicity", "jealousy", "envy", "comparisons", "perfectionism", "self-doubt", "indecision", "procrastination", "inertia", "addiction", "hopelessness", "lack", "betrayal", "loss", "change", "criticism", "rejection", "failure", "mistakes"];
 
 const wordLists = [["What is one thing you are grateful for today?", gratefulFor], 
   ["What is one thing you're working on improving?", workingOn], 
   ["What is one thing that's been challenging you lately?", recentChallenges],
   ["What is one thing that you're afraid of?", fears],
-  ["If love were an object, what would it be?", loveObjects]
+  ["If love were an object, what would it be?", loveObjects],
+  ["What is one thing weighing you down right now?", weighingDown]
 ];
 
 let sounds;
@@ -109,7 +111,7 @@ function newEntry(word) {
     word,
     1
   ));
-  random(sounds).play();
+  sounds[1].play(0,random(0.7,1.4),0.6);
 }
 
 class Ball {
@@ -212,7 +214,7 @@ class Ball {
     let mousePos = new p5.Vector(mouseX, mouseY);
     if (p5.Vector.dist(mousePos, this.pos) < this.drawRadius){
       if (!this.mouseOver) {
-        hoverSound.play(0,random(1.2,2),0.2,0.2,0.5);
+        hoverSound.play(0,random(1.2,2),0.025,0.2,0.5);
         this.mouseOver = true;
       }
     }
