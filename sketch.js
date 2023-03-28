@@ -33,6 +33,16 @@ const wordLists = [["What is one thing you are grateful for today?", gratefulFor
   ["If love were an object, what would it be?", loveObjects]
 ];
 
+let sounds;
+let hoverSound;
+
+function preload() {
+  soundFormats('wav', 'mp3');
+  sounds = [loadSound('assets/b1'),loadSound('assets/b2'),loadSound('assets/b3')];
+  hoverSound = loadSound('assets/mo.mp3');
+}
+
+
 function setup() {
   const selectedPrompt = random(wordLists);
   const question = selectedPrompt[0];
@@ -99,6 +109,7 @@ function newEntry(word) {
     word,
     1
   ));
+  random(sounds).play();
 }
 
 class Ball {
@@ -199,9 +210,14 @@ class Ball {
   
   checkMouseOver() {
     let mousePos = new p5.Vector(mouseX, mouseY);
-    this.mouseOver = false
     if (p5.Vector.dist(mousePos, this.pos) < this.drawRadius){
-      this.mouseOver = true;
+      if (!this.mouseOver) {
+        hoverSound.play(0,random(1.2,2),0.2,0.2,0.5);
+        this.mouseOver = true;
+      }
+    }
+    else {
+      this.mouseOver = false;
     }
     
     if (this.mouseOver) {
