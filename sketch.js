@@ -134,7 +134,7 @@ class Ball {
   move() {
     // if the bubble is floating, add some sway
     if (!this.collided) {
-      this.vel.x += sin(frameCount*0.1+this.seed)*swayFactor;
+      this.vel.x += sin(frameCount*0.05+this.seed)*swayFactor;
     }
 
     // adding gravity and gradually slowing down the bubbles
