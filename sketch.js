@@ -9,7 +9,7 @@ let maxRadius = 0.2;
 
 let startingCircles = 20;
 
-let entriesCeiling = 20;
+let entriesCeiling = 15;
 
 let fontLight;
 let fontMedItal;
@@ -23,7 +23,7 @@ const workingOn = ["productivity", "communication", "organization", "focus", "pa
 const weatherFeeling = ["sunny", "breezy", "cloudy", "rainy", "thundery", "windy", "humid", "foggy", "misty", "chilly", "frosty", "freezing", "snowy", "sleety", "icy", "blustery", "gloomy", "stormy", "overcast", "damp", "drizzly", "showery", "muggy", "sweltering", "scorching", "hot", "warm", "cool", "temperate", "dry", "arid", "drought", "dusty", "smoky", "hazy", "polluted", "clear", "bright", "fresh", "crisp", "invigorating", "refreshing", "bracing", "glowing", "radiant", "balmy", "serene", "tranquil", "calm", "peaceful"];
 const animalFeeling = ["lion", "gazelle", "monkey", "turtle", "dolphin", "panda", "elephant", "bird", "snake", "wolf", "fox", "kangaroo", "koala", "otter", "giraffe", "rhino", "hippo", "cheetah", "panther", "tiger", "bear", "owl", "cat", "dog", "rabbit", "hamster", "deer", "horse", "cow", "sheep", "goat", "pig", "chicken", "duck", "parrot", "crocodile", "shark", "whale", "octopus", "jellyfish", "starfish", "crab", "lobster", "snail", "butterfly", "spider", "scorpion", "ant", "bee"];
 const recentChallenges = ["time", "patience", "focus", "motivation", "communication", "consistency", "confidence", "perfectionism", "anxiety", "fear", "procrastination", "self-doubt", "balance", "prioritization", "organization", "responsibility", "change", "adaptation", "rejection", "criticism", "self-discipline", "negativity", "self-care", "money", "health", "energy", "workload", "decision-making", "technology", "complexity", "creativity", "insecurity", "jealousy", "forgiveness", "letting go", "boundaries", "acceptance", "trust", "self-improvement", "relationships", "family", "loneliness", "grief", "trauma", "uncertainty", "stress", "sleep", "environment", "productivity"];
-const fears = ["heights", "spiders", "failure", "death", "rejection", "public speaking", "darkness", "conflict", "snakes", "claustrophobia", "water", "needles", "flying", "dogs", "socializing", "abandonment", "losing control", "disease", "crowds", "being alone", "the future", "unknown", "germs", "the supernatural", "success", "being vulnerable", "change", "commitment", "the ocean", "fire", "insects", "betrayal", "ghosts", "violence", "dentist", "disappointment", "getting old", "being judged", "public restrooms", "being misunderstood", "mirrors", "being wrong", "failure", "being cheated on", "never finding love", "losing someone", "poverty", "war", "failure"];
+const fears = ["heights", "spiders", "failure", "death", "rejection", "speaking", "darkness", "conflict", "snakes", "claustrophobia", "water", "needles", "flying", "dogs", "socializing", "abandonment", "losing control", "disease", "crowds", "being alone", "the future", "unknown", "germs", "the supernatural", "success", "being vulnerable", "change", "commitment", "the ocean", "fire", "insects", "betrayal", "ghosts", "violence", "dentist", "disappointment", "aging", "judgement", "restrooms", "misunderstanding", "mirrors", "wrongness", "failure", "cheating", "lovelessness", "loss", "poverty", "war", "failure"];
 const loveObjects = ["heart", "flower", "candle", "ring", "hug", "kiss", "book", "pillow", "painting", "letter", "mirror", "jigsaw", "puzzle", "lock", "key", "photo", "album", "bridge", "tree", "umbrella", "gift", "map", "compass", "sculpture", "statue", "treasure", "box", "chocolate", "teapot", "cushion", "bottle", "bracelet", "jewelry", "drawer", "calendar", "ticket", "photograph", "bookmark", "blanket", "scarf", "journal", "cup", "telephone", "bag", "notebook", "soap", "cloud", "star", "moon"];
 
 const wordLists = [["What is one thing you are grateful for today?", gratefulFor], 
@@ -95,7 +95,7 @@ function newEntry(word) {
     createVector(random(width),random(5*height/6,height)),
     p5.Vector.random2D().mult(random(0.1)),
     minRadius,
-    color(200,200,250),
+    color(random(ballColors)),
     word,
     1
   ));
@@ -223,5 +223,12 @@ class Ball {
     // compute appropriate radius based on entries
     this.baseRadius = map(this.entries, 1, entriesCeiling, minRadius, maxRadius);
     this.targetRadius = this.baseRadius;
+  }
+}
+
+function keyPressed() {
+  if (key === '0') {
+    balls = [];
+    console.log(balls);
   }
 }
